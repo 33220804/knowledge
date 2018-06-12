@@ -1,0 +1,46 @@
+ajax(method,url,data,success){ 
+	//初始化xmlhttp
+	var xhr="";
+	try{
+		xhr = new XMLHttpRequest();
+	} catch(e) {
+		xhr = new ActiveXObject('microsoft.XMLHTTTP');
+	}
+	if(method=="get" && data){
+		url+='?'+data;
+	}
+  
+
+       
+                xhr.open(method, url, true);
+				if(method=="get"){
+					xhr.send()
+				}else{
+					xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");    
+					xhr.send();
+				}
+                if (xmlhttp != "") {
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {                      
+                            success(xhr.responseText);//函数
+                        }
+                    }
+                }
+
+	}
+	//调用
+	ajax("post","xx.php",'',function(data){
+		var strjson = JSON.parse(xhr.responseText); 
+		newscla = strjson;
+		for (var i = 0; i < strjson.length; i++) {
+			$('#idclass').append("<option>" + strjson[i].类别名 + "</option>")
+		   
+		}
+	})
+	//
+	ajax({
+		type:'get',
+		url:'getname.php',
+		data:'',
+		success:function(data){....}
+	})

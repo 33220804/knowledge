@@ -1,0 +1,81 @@
+1、十进制转化为N进制
+
+Integer.toBinaryString(int i)//返回的是i的二进制表示，返回类型为String
+
+Integer.toString(int i,int radix)//返回的是i的二进制表示，返回类型为String，但是负数不适用。
+
+
+
+
+Integer.toHexString(int i)//返回16进制
+
+Integer.toOctalString(int i)//返回8进制
+
+
+
+
+System.out.println(Integer.toBinaryString(5));//101
+
+System.out.println(Integer.toBinaryString(-5));//-5的二进制的补码形式
+
+System.out.println(Integer.toString(5,2.)//101
+
+System.out.println(Integer.toString(-5,2)//结果不对，负数不能用此函数
+
+
+
+
+2、N进制转化为十进制
+
+Integer.parseInt(String s,int radix)//radix进制的s，转化为十进制，返回类型为int
+
+Integer.valueOf(String s,int radix)//同上
+
+
+**********************************************************************************
+new java.math.BigInteger(number, from).toString(to) 
+
+
+
+public class SystemConvert {
+ 
+    static Scanner scanner = new Scanner(System.in);
+    static String s = "";
+ 
+    // 定义10进制转2进制的方法。
+    public static String C10T2(int numb) {
+        String result = "";
+        for (int i = numb; i > 0; i /= 2)
+            result = i % 2 + result;
+        return result;
+    }
+ 
+    // 定义10进制转8进制的方法。
+    public static String C10T8(int numb) {
+        String result = "";
+        for (int i = numb; i > 0; i /= 8)
+            result = i % 8 + result;
+        return result;
+    }
+ 
+    // 定义2进制转10进制的方法。
+    public static int C2T10(int numb) {
+        int k = 0, result = 0;
+        // String result=null;
+        for (int i = numb; i > 0; i /= 10) {
+            result += (i % 10) * Math.pow(2, k);
+            k++;
+        }
+        return result;
+    }
+ 
+    // 定义8进制转10进制的方法。
+    public static int C8T10(int numb) {
+        int k = 0, temp = 0;
+        for (int i = numb; i > 0; i /= 10) {
+            temp += (i % 10) * Math.pow(8, k);
+            k++;
+        }
+        return temp;
+    }
+                                                                                                                                                                                                                                                                                                                                      

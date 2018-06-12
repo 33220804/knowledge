@@ -1,0 +1,11 @@
+
+<add name="strconn" connectionString="Data Source=.;Persist Security Info=True;Initial Catalog=stu;User ID=sa;Password=1"/>
+
+
+
+
+Persist Security Info=True的解释：
+Persist Security Info 布尔类型.为True时，表明采用集成安全机制；若为False，则表明不采用集成安全机制。 默认值为false 
+
+
+作为网络操作系统上的服务，SQL Server的安全性还可以与操作系统的安全性建立某种联系，这就是SQL Server的安全性模式。它有三种安全模式：标准安全、集成安全、混合安全。标准安全完全由SQL Server自身维护安全性，对所有连接采用SQL Server本身的登录证实过程，通过使用Login ID和口令来访问数据库服务器。集成安全允许SQL Server用Windows 2000的认证机制来证实SQL Server的所有连接。混合安全使得SQL Server的用户和Windows 2000的用户都可以获得访问数据库的权限。当然，可以不使用SQL Server自身的用户管理，只允许Windows 2000的用户具有访问数据库的权限 

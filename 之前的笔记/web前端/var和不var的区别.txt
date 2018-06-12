@@ -1,0 +1,51 @@
+var与不var有两个区别：
+
+
+-----------------------delete来删除成员，而不是删除变量，
+（1.  每个变量下都有一个隐藏属性，configurable,这个属性确定了变量名字能否更改，变量能否被删除。true的话，可以更改，可删除；反之，不能更改，不能删除。2.  在用var 声明变量时，JS解析器会默认把configurable设为false，所以它不能改名字，不能被删掉。
+
+作者：杨志
+链接：http://www.zhihu.com/question/20625021/answer/15668891
+来源：知乎
+著作权归作者所有，转载请联系作者获得授权。
+）
+
+
+https://pic2.zhimg.com/c1ba973450f9bb58bb22eb4542b06aed_b.jpg
+*********************************************************************************
+1 var的全局变量不能被删除，因为delete智能删除对象的可删除的属性，而通过var 定义的全局属性会被标明不可删除。需要说明的是，delete不成功并不会抛错，delete的返回值是true|false。
+
+
+2 var定义的全局变量会被提升，而不用var定义的全局变量不会被提升。可以看下面程序的执行结果：
+var与不var有两个区别：
+
+
+[html] view plain copy
+
+<script>  
+alert(a);  //弹出undefine
+var a=1;  
+</script>  
+
+
+
+<script>
+alert(a);//error, a undefined报错
+a=1;
+</script>
+
+
+
+<script>
+a=1;
+alert(a);
+alert(delete a);  //true
+</script>
+
+
+<script>
+alert(a); 
+var a=1;
+alert(a);
+alert(delete a);  //false
+</script>

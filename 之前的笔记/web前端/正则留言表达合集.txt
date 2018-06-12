@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script>
+function Checked(){
+	var tutle_n=document.getElementById("tutle_n");
+	var tel = form2.tel.value;
+	var mobile = /^0{0,1}(14[0-9]|17[0-9]|13[0-9]|15[0-9]|18[0-9]|14[0-9])[0-9]{8}$/;
+	
+	var email = form2.email.value;
+	var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+	
+	var address = document.getElementById("address");
+	var content = document.getElementById("content")
+	
+    if(tutle_n.value==''){ alert("请填写您的姓名！"); tutle_n.focus(); return false; }
+	if(!mobile.test(tel))
+		{
+		alert("手机号格式不对，请重新输入！");
+		form2.tel.focus();
+		return false;
+		}
+	 if(!myreg.test(email))
+		{
+		alert("电子邮件格式不对，请重新输入！");
+		form2.email.focus();
+		return false;
+		}
+	   if(address.value==''){ alert("请填写您的地址！"); address.focus(); return false; }
+	   if(content.value==''){ alert("请填写您的留言内容！"); content.focus(); return false; }
+	return true;
+}
+</script>
+</head>
+
+<body>
+
+<div class="min">
+    <form action="http://www.w3school.com.cn/demo/demo_form.asp" method="post" onsubmit="return Checked();" id="form2" name="form2">
+        <p>姓名:<input id="tutle_n" name="tutle_n" type="text" value="" /></p>  
+        <p>电话:<input type="text" value="" name="info[tel]" id="tel" class="telep"></p> 
+        <p>邮箱:<input type="text" value="" name="info[email]" id="email" class="text"></p> 
+        <p>地址:<input type="text" value="" name="info[address]" id="address" class="text"></p> 
+        <p>留言:<textarea name="info[content]" id="content" cols="" rows="" class="text1"></textarea></p> 
+        <p><input type="submit" value="提交" class="submit"></p>
+    </form>
+</div>
+</body>
+</html>

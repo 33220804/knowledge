@@ -1,0 +1,31 @@
+(4) 
+
+对于输出浮点数保留几位小数的问题，可以使用DecimalFormat类， 
+
+ 
+
+Code
+import java.text.*; 
+DecimalFormat f = new DecimalFormat("#.00#"); 
+DecimalFormat g = new DecimalFormat("0.000"); 
+double a = 123.45678, b = 0.12; 
+System.out.println(f.format(a)); 
+System.out.println(f.format(b)); 
+
+System.out.println(g.format(a)); 
+System.out.println(g.format(b)); 
+ 
+
+这里0指一位数字，#指除0以外的数字。
+
+结果：
+123.457
+.12
+
+123.457
+0.120
+
+
+
+2)*****************************************************
+System.out.printf("%.7f",num);

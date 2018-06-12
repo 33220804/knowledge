@@ -1,0 +1,10 @@
+在Box2D中销毁刚体依然是采用工厂模式，world.DestroyBody(body)，body就是你所要销毁的刚体，销毁关节也是一样的，world. DestroyJoint (joint)。
+
+ 注意在销毁刚体之前记得将先removeChild 其userData，并将userData设置为null。
+
+ 同时也应该注意在遍历world中的时候，bodyList只是返回一个body，而不是一个bodyList,
+
+ 因此为了安全地销毁当前物体，尽可能地先将body.GetNext()临时保存再执行对body的销毁。
+
+ 就用户手册9.2所说的，当我们销毁一个刚体时，Box2D会自动隐式摧毁，即将它的形状，关节及接触都一起销毁，而你也应该将任何指向这些形状或关节的指针置零，以免下次访问而造成系统崩溃。
+运行结果： 

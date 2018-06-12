@@ -1,0 +1,134 @@
+JAVA之BigInteger
+用Java来处理高精度问题，相信对很多ACMer来说都是一件很happy的事，简单易懂。用Java刷了一些题，感觉Java还不错，在处理高精度和进制转换中，调用库函数的来处理。下面是写的一些Java中一些基本的函数的及其……
+头文件：
+import java.io.*;
+import java.util.*;
+import java.math.*;
+
+读入：?Scanner cin = Scanner (System.in);
+while(cin.hasNext())//等价于!=EOF
+n=cin.nextInt();//读入一个int型的数
+n=cin.nextBigInteger();//读入一个大整数
+
+输出：?System.out.print(n);//打印n
+System.out.println();//换行
+System.out.printf("%d\n",n);//也可以类似c++里的输出方式
+
+定义：?int i,j,k,a[];
+a = new int[100];
+BigInteger n,m;
+BigDecimal n;
+String s;
+
+
+
+数据类型：
+数据类型?类型名?位长?取值范围?默认值
+布尔型?boolean?1?true,false?false
+字节型?byte?8?-128-127?0
+字符型?char?16?‘\u000’-\uffff?‘\u0000’
+短整型?short?16?-32768-32767?0
+整型?int?32?-2147483648,2147483647?0
+长整型?long?64?-9.22E18,9.22E18?0
+浮点型?float?32?1.4E-45-3.4028E+38?0.0
+双精度型?double?64?4.9E-324,1.7977E+308?0.0
+
+
+
+这里特别要提出出的两种类型：
+BigInteger 任意大的整数，原则上是，只要你的计算机的内存足够大，可以有无限位的
+BigInteger 任意大的实数，可以处理小数精度问题。
+
+
+BigInteger中一些常见的函数：
+A=BigInteger.ONE
+B=BigInteger.TEN
+C=BigInteger.ZERO
+
+
+一些常见的数的赋初值。将int型的数赋值给BigInteger，BigInteger.valueOf(k);
+基本的函数：
+valueOf:赋初值
+add:+?a.add(b);
+subtract:-
+multiply:*
+divide:/
+remainder：this % val
+divideAndRemainder：a[0]=this / val; a[1]=this % val
+pow：a.pow(b)=a^b
+gcd,abs:公约数，绝对值
+negate：取负数
+signum：符号函数
+mod：a.mod(b)=a%b;
+shiftLeft:左移，this << n ，this*2^n;
+shiftRight:右移，this >> n，this/2^n;
+and:等同于c++的&&,且；
+or：||，或;
+xor:异或，BigInteger xor(BigInteger val),this^val
+not:!,非；
+bitLength：返回该数的最小二进制补码表示的位的个数，即 *不包括* 符号位 (ceil(log2(this <0 ? -this : this + 1)))。对正数来说，这等价于普通二进制表示的位的个数。
+bitCount：返回该数的二进制补码表示中不包扩符号位在内的位的个数。该方法在 BigIntegers 之上实现位向量风格的集合时很有用。
+isProbablePrime：如果该 BigInteger 可能是素数，则返回 true ；如果它很明确是一个合数，则返回 false 。 参数 certainty 是对调用者愿意忍受的不确定性的度量：如果该数是素数的概率超过了 1 - 1/2**certainty方法，则该方法返回 true 。执行时间正比于参数确定性的值。
+compareTo：根据该数值是小于、等于、或大于 val 返回 -1、0 或 1；
+equals：判断两数是否相等，也可以用compareTo来代替；
+min，max：取两个数的较小、大者；
+intValue，longValue，floatValue，doublue：把该数转换为该类型的数的值。
+
+
+
+
+
+
+
+今天参考课本写了一个关于二进制与十进制转换的程序，程序算法不难，但写完后测试发现不论是二转十还是十转二，对于大于21亿即超过整数范围的数不能很好的转换。都会变成0.
+参考书籍发现使用使用BigInteger可以解决这个问题。
+于是查找了下JDK,然后测试几次终于写成功了！
+使用心得如下：
+
+1，BigInteger属于java.math.BigInteger,因此在每次使用前都要import 这个类。偶开始就忘记import了，于是总提示找不到提示符。
+
+2，其构造方法有很多，但现在偶用到的有： BigInteger(String val)
+将 BigInteger 的十进制字符串表示形式转换为 BigInteger。
+BigInteger(String val, int radix)
+将指定基数的 BigInteger 的字符串表示形式转换为 BigInteger。
+如要将int型的2转换为BigInteger型，要写为BigInteger two=new BigInteger("2"); //注意2双引号不能省略
+
+
+3，BigInteger类模拟了所有的int型数学操作，如add()==“+”,divide()==“-”等，但注意其内容进行数学运算时不能直接使用数学运算符进行运算，必须使用其内部方法。而且其操作数也必须为BigInteger型。
+如：two.add(2)就是一种错误的操作，因为2没有变为BigInteger型。
+
+
+4，当要把计算结果输出时应该使用.toString方法将其转换为10进制的字符串，详细说明如下：
+String toString()
+返回此 BigInteger 的十进制字符串表示形式。
+输出方法：System.out.print(two.toString());
+
+
+
+5,另外说明三个个用到的函数。?BigInteger remainder(BigInteger val)
+返回其值为 (this % val) 的 BigInteger。
+BigInteger negate()
+返回其值是 (-this) 的 BigInteger。
+int?compareTo(BigInteger val)
+将此 BigInteger 与指定的 BigInteger 进行比较。
+remainder用来求余数。
+negate将操作数变为相反数。
+compare的详解如下：
+compareTo
+public int compareTo(BigInteger val)将此 BigInteger 与指定的 BigInteger 进行比较。对于针对六个布尔比较运算符 (<, ==, >, >=, !=, <=) 中的每一个运算符的各个方法，优先提供此方法。执行这些比较的建议语句是：(x.compareTo(y) <op> 0)，其中 <op> 是六个比较运算符之一。
+指定者：
+接口 Comparable<BigInteger> 中的 compareTo
+参数：
+val - 将此 BigInteger 与之比较的 BigInteger。
+返回：
+
+将BigInteger的数转为2进制：
+public class TestChange {
+public static void main(String[] args) {
+System.out.println(change("3",10,2));
+}
+//num 要转换的数 from源数的进制 to要转换成的进制
+private static String change(String num,int from, int to){
+return new java.math.BigInteger(num, from).toString(to);
+}
+}
