@@ -1,0 +1,64 @@
+package zml.poi;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.junit.Test;
+
+public class poiExcel001 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+	}
+	
+	
+	/**
+	 * POI EXCEL的导出
+	 * @throws IOException 
+	 */
+	@Test
+	public void poiExportExcel() throws IOException{
+		//excel
+		HSSFWorkbook  wb = new HSSFWorkbook();
+		//sheet 
+		HSSFSheet sheet01 = wb.createSheet("sheel名称:shee1");
+		
+		//第一行  标题
+		HSSFRow row01 =sheet01.createRow(0);
+		HSSFCell cel01 = row01.createCell(0);
+		cel01.setCellValue("学员成绩一览表");
+		sheet01.addMergedRegion(new CellRangeAddress(0,0,0,4));
+		
+		//第二行 表头
+		HSSFRow row02 =sheet01.createRow(0);
+		row02.createCell(0).setCellValue("姓名");
+		row02.createCell(1).setCellValue("班级");
+		row02.createCell(2).setCellValue("笔试成绩");
+		row02.createCell(3).setCellValue("机试成绩");
+	
+		//数据
+		for(int i=1;i<5;i++){
+			HSSFRow row =sheet01.createRow(i);
+			row.createCell(0).setCellValue("小明00"+i);
+			row.createCell(1).setCellValue("高一00"+i);
+			row.createCell(2).setCellValue(70+i);
+			row.createCell(3).setCellValue(80+i);
+		}
+		
+		//输出excel文件
+		//OutputStream output = new OutputStream();
+		FileOutputStream output = new FileOutputStream("./poiExcel.xls");
+		wb.write(output);
+		wb.close();
+		output.close();
+		
+	}
+}

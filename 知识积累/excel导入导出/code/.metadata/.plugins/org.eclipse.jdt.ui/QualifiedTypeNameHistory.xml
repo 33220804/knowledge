@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.apache.poi.hssf.usermodel.HSSFWorkbook"/>
+<fullyQualifiedTypeName name="org.apache.poi.ss.usermodel.Sheet"/>
+<fullyQualifiedTypeName name="org.apache.poi.hssf.usermodel.HSSFRow"/>
+<fullyQualifiedTypeName name="jxl.Workbook"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
+<fullyQualifiedTypeName name="jxl.write.WritableWorkbook"/>
+<fullyQualifiedTypeName name="jxl.format.Colour"/>
+<fullyQualifiedTypeName name="jxl.write.DateFormat"/>
+<fullyQualifiedTypeName name="jxl.format.VerticalAlignment"/>
+<fullyQualifiedTypeName name="jxl.write.Label"/>
+<fullyQualifiedTypeName name="jxl.format.Alignment"/>
+<fullyQualifiedTypeName name="jxl.write.NumberFormat"/>
+<fullyQualifiedTypeName name="jxl.write.biff.File"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+</qualifiedTypeNameHistroy>
