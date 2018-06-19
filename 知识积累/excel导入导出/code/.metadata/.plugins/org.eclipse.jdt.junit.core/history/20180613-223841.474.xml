@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="poiExcel001" project="ExcelDemo01" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="zml.poi.poiExcel001" time="0.203">
-    <testcase name="poiExportExcel" classname="zml.poi.poiExcel001" time="0.14"/>
-    <testcase name="impotExcel" classname="zml.poi.poiExcel001" time="0.063"/>
-  </testsuite>
-</testrun>
