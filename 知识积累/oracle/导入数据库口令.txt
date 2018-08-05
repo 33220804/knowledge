@@ -1,0 +1,61 @@
+命令行链接sqlplus / as sysdba
+
+导出
+exp xxx/xxxx@orcl file=e:\fhbe.dmp full=y
+
+create tablespace xxx logging datafile 'D:\xxxxx\xxx.dbf'size 256m autoextend on next 256m maxsize 2048m extent management local;
+
+
+create user xxx identified by xxxx default tablespace xxx temporary tablespace temp;
+
+导入
+imp xxx/xxxx@orcl file=E:\xxxxx\xxx.dmp full=y ignore=y log=E:\loglog\tables.log
+
+
+name：secrecy
+
+修改用户密码
+                            ---------以sys登陆
+alter user 用户名 /unlock;                  --------- 解除锁定
+alter user 用户名 identified by 密码               -------------修改密码
+
+删除
+drop user xxx cascade;
+drop tablespace xxxxxx including contents and datafiles;
+
+
+
+
+exp system/manager@orcl file=seapark log=seapark owner=seapark
+imp system/111111@orcl fromuser=aaa touser=bbb file=aaa.dmp
+
+
+imp xxx/xxxx@orcl file=E:\xxxxx\xxx.dmp full=y 
+
+
+导出空表
+
+select table_name from user_tables where NUM_ROWS=0
+
+select ' alter table ' || table_name ||  ' allocate extent; ' from user_tables //建议不要使用条件where num_rows=0
+
+表空间不够大
+SELECT UPPER(F.TABLESPACE_NAME) "表空间名",
+D.TOT_GROOTTE_MB "表空间大小(M)",
+D.TOT_GROOTTE_MB - F.TOTAL_BYTES "已使用空间(M)",
+TO_CHAR(ROUND((D.TOT_GROOTTE_MB - F.TOTAL_BYTES) / D.TOT_GROOTTE_MB * 100,2),'990.99') "使用比",
+F.TOTAL_BYTES "空闲空间(M)",
+F.MAX_BYTES "最大块(M)"
+FROM (SELECT TABLESPACE_NAME,
+ROUND(SUM(BYTES) / (1024 * 1024), 2) TOTAL_BYTES,
+ROUND(MAX(BYTES) / (1024 * 1024), 2) MAX_BYTES
+FROM SYS.DBA_FREE_SPACE
+GROUP BY TABLESPACE_NAME) F,
+(SELECT DD.TABLESPACE_NAME,
+ROUND(SUM(DD.BYTES) / (1024 * 1024), 2) TOT_GROOTTE_MB
+FROM SYS.DBA_DATA_FILES DD
+GROUP BY DD.TABLESPACE_NAME) D
+WHERE D.TABLESPACE_NAME = F.TABLESPACE_NAME
+ORDER BY 4 DESC;
+
+ALTER TABLESPACE "FHBE" ADD DATAFILE 'E:\oracle_tablespace\FHBE02.DBF' SIZE 10G AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;
