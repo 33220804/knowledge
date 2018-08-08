@@ -1,0 +1,57 @@
+springmvc
+1）什么是springmvc：
+	是spring提供的web框架；
+
+2）组成
+	DispatcherServlet前端处理器、处理器映射器、处理器控制器、视图解析器、视图  （3处理器+1解析器+视图）
+	
+	DispatcherServlet：前端控制器，由springmvc提供
+
+	HandlerMappting：处理器映射器，由springmvc提供
+
+	HandlerAdapter：处理器适配器，由springmvc提供
+
+	Handler：处理器，需要程序员开发
+
+	ViewResolver：视图解析器，由springmvc提供
+
+	View：真正视图页面需要由程序编写
+
+3）运行原理
+
+	1、发送请求给【前端控制器】
+	2、【前端控制】发送请求给【处理器映射器】
+	3、【处理器映射器】 返回找到的handler（后端控制器controller） 给【前端处理器】
+	4、【前端处理器】执行handler，返回modelAndView
+	5、【前端控制器】通过视图解析器，解析modelAndView ，返回页面（jsp）
+	6、【前端控制器】发送请求页面给用户
+	
+	
+4）入门实例（步骤）
+	1、导入jar包
+		spring基础包+springmvc +jstl的jar（springmvc默认支持）	
+	2、前端控制器
+		web.xml	
+		  
+  <!--前端控制器  -->
+  <servlet>
+  	<servlet-name>springmvc</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  		<!-- sprigmvc配置文件 -->
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<!-- 默认为servlet名称—application。xml -->
+  		<param-value>classpath:springmvc.xml</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>springmvc</servlet-name>
+  	<url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+
+	2、springmvc配置文件
+	   处理器映射器（handlerMapping）+ 处理器适配器（hanlerAdapter）     +          视图解析器（viewResolver）
+		有springmvc提供	    SimpleControllerHandlerAdapter 需要实现controller    InternalResourceViewResolver
+		beanNameUrlHandlerMapping
+		simpleUrlHandlerMapping
+		ControllerHandlerMapping			
