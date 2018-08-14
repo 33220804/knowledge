@@ -51,7 +51,15 @@ springmvc
 
 	2、springmvc配置文件
 	   处理器映射器（handlerMapping）+ 处理器适配器（hanlerAdapter）     +          视图解析器（viewResolver）
-		有springmvc提供	    SimpleControllerHandlerAdapter 需要实现controller    InternalResourceViewResolver
-		beanNameUrlHandlerMapping
-		simpleUrlHandlerMapping
-		ControllerHandlerMapping			
+	 有springmvc提供	    SimpleControllerHandlerAdapter 需要实现controller      InternalResourceViewResolver
+						  方法返回modelAndView  
+	beanNameUrlHandlerMapping   HttpRequestHandlerAdapter+实现HttpRequestHandler
+	 simpleUrlHandlerMapping	方法返回void ，使用request.getReqestDispatcher("WEB-INF\view\XX.jsp").forward();		ControllerHandlerMapping			
+
+
+5)非注解适配器和注解适配器
+	1、
+	2、
+	注解：
+		映射器  适配器
+	
