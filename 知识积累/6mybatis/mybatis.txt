@@ -1,0 +1,24 @@
+mybatis知识点：
+
+1）什么是mybatis
+
+	是java持久层框架，是对jdbc操作数据库的一个封装；
+
+2）mybatis原理
+	1核心元素: sqlMapConfig.xml     Mapper.xml 
+		   sqlSessionFactory    SqlSession  Executor(执行器)  
+		   mapperStatement(pojo的输入输出)
+	2运行原理
+		1【SqlMapConfig.xml】mybaitis的全局配置文件，配置数据源，事务
+		2【mapper.xml】 配置sql
+		3通过【sqlSessionFactory】去创建【sqlSession】
+		4【sqlSession】获取【mapper.xml】操作sql
+		5
+
+3）mybaitis的使用
+    入门
+	1导入jar包
+	  mybatis-3.2.7.jar--核心 jar包
+	  mysql的连接jar包
+		依赖包需要注意：
+	3

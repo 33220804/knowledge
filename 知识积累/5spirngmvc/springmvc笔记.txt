@@ -15,7 +15,7 @@ springmvc
 
 	ViewResolver：视图解析器，由springmvc提供
 
-	View：真正视图页面需要由程序编写 
+	View：真正视图页面需要由程序编写
 
 3）运行原理
 
